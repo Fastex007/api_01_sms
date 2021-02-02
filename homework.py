@@ -17,7 +17,6 @@ client = Client(account_sid, auth_token)
 def get_status(user_id):
     vk_access_token = os.getenv('VK_ACCESS_TOKEN')
     vk_api_v = os.getenv('VK_API_V')
-    vk_base_url = os.getenv('VK_BASE_URL')
 
     params = {
         'user_ids': user_id,
@@ -25,7 +24,10 @@ def get_status(user_id):
         'access_token': vk_access_token,
         'fields': 'online'
     }
-    user_state = requests.post(vk_base_url, params=params)
+    user_state = requests.post(
+        'https://api.vk.com/method/users.get',
+        params=params
+    )
     user_state = user_state.json().get('response')[0]
     return user_state.get('online')
 
