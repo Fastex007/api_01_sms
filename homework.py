@@ -41,6 +41,7 @@ def send_sms(sms_text):
     return message.sid
 
 
+# Проверка связи
 if __name__ == '__main__':
     vk_id = input('Введите id ')
     while True:
